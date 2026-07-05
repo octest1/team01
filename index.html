@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>을숙도 생태 지킴이</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f0f4f1;
+        }
+        /* Custom scrollbar for clean design */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eef2f0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbdcd0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col items-center justify-start">
+
+    <!-- Main Container (Responsive Width) -->
+    <div class="w-full max-w-md md:max-w-6xl bg-white min-h-screen shadow-2xl flex flex-col border-x border-slate-100 transition-all duration-300">
+        
+        <!-- Header -->
+        <header class="bg-emerald-800 text-white py-5 px-6 sticky top-0 z-50 shadow-md md:rounded-b-none">
+            <div class="flex items-center justify-between">
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-white/20 p-2 rounded-xl">
+                        <i class="fa-solid fa-feather-pointed text-emerald-300 text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg md:text-xl font-black tracking-tight">을숙도 생태 지킴이</h1>
+                        <p class="text-xs text-emerald-200">Eco-Guardian of Eulsukdo</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Navigation Menu (Visible only on Desktop) -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-bold">
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="text-emerald-100 hover:text-white transition-colors flex items-center space-x-1">
+                        <i class="fa-solid fa-house text-xs"></i> <span>처음으로</span>
+                    </button>
+                    <button onclick="alertModal('🍀 을숙도 소개', '낙동강 하구에 위치하며 겨울철 고니, 저어새 등 수많은 멸종위기 철새들의 고향입니다.')" class="text-emerald-100 hover:text-white transition-colors flex items-center space-x-1">
+                        <i class="fa-solid fa-leaf text-xs"></i> <span>을숙도 정보</span>
+                    </button>
+                    <button onclick="alertModal('🗺️ 지킴이 미션', '오늘 배운 5가지 행동 수칙을 꼭 실천하고, 주변 친구들에게도 널리 알려 보존에 동참해 주세요!')" class="text-emerald-100 hover:text-white transition-colors flex items-center space-x-1">
+                        <i class="fa-solid fa-shield-halved text-xs"></i> <span>나의 미션</span>
+                    </button>
+                </nav>
+
+                <!-- Mobile Mode Badge (Hidden on Desktop) -->
+                <span class="md:hidden text-xs bg-emerald-700 text-emerald-100 px-2.5 py-1 rounded-full font-medium">중학생 모드</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-5 md:p-8 space-y-8 md:space-y-10 overflow-y-auto pb-24 md:pb-12">
+            
+            <!-- Desktop Two-Column Layout (Intro & Quiz side by side) -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
+                
+                <!-- Left/Top: 1. 을숙도 소개 섹션 (Takes 5 cols on desktop) -->
+                <div class="md:col-span-5 space-y-6">
+                    <section class="space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-1.5 h-6 bg-emerald-600 rounded-full"></span>
+                            <h2 class="text-lg md:text-xl font-bold text-slate-900">새들의 낙원, 을숙도</h2>
+                        </div>
+                        
+                        <!-- 카드 형태의 을숙도 소개 -->
+                        <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border border-emerald-100/70 p-5 md:p-6 rounded-2xl relative overflow-hidden shadow-sm">
+                            <div class="absolute -right-8 -bottom-8 w-28 h-28 bg-emerald-100/40 rounded-full pointer-events-none"></div>
+                            <div class="absolute right-4 top-4 text-emerald-200/40 text-5xl pointer-events-none">
+                                <i class="fa-solid fa-dove"></i>
+                            </div>
+                            
+                            <p class="text-sm md:text-base leading-relaxed text-slate-700 font-medium mb-3 relative z-10">
+                                낙동강과 남해바다가 만나는 <span class="text-emerald-700 font-bold underline decoration-emerald-200 decoration-4">을숙도</span>는 모래가 쌓여 만들어진 독특한 삼각주예요. 
+                            </p>
+                            <p class="text-xs md:text-sm leading-relaxed text-slate-600 space-y-1 relative z-10">
+                                다양한 먹이가 가득한 넓은 습지가 있어 매년 수만 마리의 겨울 철새들이 쉬어가는 소중한 쉼터이자, 부산의 심장 같은 생태계의 보물창고랍니다.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Right/Bottom: 3. OX 퀴즈 섹션 (Takes 7 cols on desktop) -->
+                <div class="md:col-span-7 space-y-6">
+                    <section class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-1.5 h-6 bg-emerald-600 rounded-full"></span>
+                                <h2 class="text-lg md:text-xl font-bold text-slate-900">을숙도 생태 지식 퀴즈</h2>
+                            </div>
+                            <span id="quiz-progress" class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg">1 / 5</span>
+                        </div>
+
+                        <!-- 퀴즈 컨테이너 -->
+                        <div class="bg-slate-50 border border-slate-100 p-6 md:p-8 rounded-2xl relative">
+                            <!-- 진행바 -->
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mb-6 overflow-hidden">
+                                <div id="quiz-bar" class="bg-emerald-600 h-full w-1/5 transition-all duration-300"></div>
+                            </div>
+
+                            <!-- 문제 표시 -->
+                            <div id="quiz-box" class="min-h-[110px] md:min-h-[140px] flex flex-col justify-center">
+                                <p id="quiz-question" class="text-sm md:text-base font-bold text-slate-800 leading-relaxed text-center mb-4">
+                                    로딩 중...
+                                </p>
+                            </div>
+
+                            <!-- 선택지 버튼 -->
+                            <div id="quiz-options" class="grid grid-cols-2 gap-4 mt-4">
+                                <button onclick="checkAnswer(true)" class="py-4 md:py-6 bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white rounded-xl font-bold text-xl shadow-sm transition-all flex flex-col items-center justify-center space-y-1">
+                                    <i class="fa-regular fa-circle text-2xl md:text-3xl"></i>
+                                    <span class="text-xs md:text-sm font-medium">그렇다 (O)</span>
+                                </button>
+                                <button onclick="checkAnswer(false)" class="py-4 md:py-6 bg-rose-400 hover:bg-rose-500 active:scale-95 text-white rounded-xl font-bold text-xl shadow-sm transition-all flex flex-col items-center justify-center space-y-1">
+                                    <i class="fa-solid fa-xmark text-2xl md:text-3xl"></i>
+                                    <span class="text-xs md:text-sm font-medium">아니다 (X)</span>
+                                </button>
+                            </div>
+
+                            <!-- 피드백 모달/오버레이 (정답/오답 표시) -->
+                            <div id="feedback-overlay" class="absolute inset-0 bg-white/95 rounded-2xl flex flex-col items-center justify-center p-5 hidden transition-all duration-300">
+                                <div id="feedback-icon-container" class="w-14 h-14 rounded-full flex items-center justify-center mb-3">
+                                    <i id="feedback-icon" class="text-3xl text-white"></i>
+                                </div>
+                                <h4 id="feedback-title" class="text-lg font-black mb-2">정답입니다!</h4>
+                                <p id="feedback-desc" class="text-xs md:text-sm text-slate-600 text-center leading-relaxed max-w-[280px] mb-4">정답 설명이 들어갑니다.</p>
+                                <button onclick="nextQuestion()" class="px-6 py-2.5 bg-emerald-800 hover:bg-emerald-900 text-white font-bold rounded-xl text-xs active:scale-95 transition-all">다음 문제 <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                            </div>
+
+                            <!-- 결과 화면 -->
+                            <div id="result-overlay" class="absolute inset-0 bg-white rounded-2xl flex flex-col items-center justify-center p-6 hidden">
+                                <div class="text-4xl text-emerald-600 mb-3">
+                                    <i class="fa-solid fa-medal text-5xl"></i>
+                                </div>
+                                <h4 class="text-base md:text-lg font-black text-slate-800 mb-1">을숙도 생태 지킴이 등극!</h4>
+                                <p class="text-xs text-slate-500 mb-4 text-center">우리는 생태계를 보호하는 히어로입니다.</p>
+                                <div class="text-3xl font-extrabold text-emerald-800 mb-6" id="result-score">5 / 5 문제 맞춤</div>
+                                <button onclick="restartQuiz()" class="px-6 py-2.5 bg-emerald-800 hover:bg-emerald-900 text-white font-bold rounded-xl text-xs transition-all flex items-center space-y-1">
+                                    <i class="fa-solid fa-rotate-right mr-1.5"></i> 다시 도전하기
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+
+            <!-- 2. 지킴이 행동 수칙 체크리스트 섹션 (Responsive Full-Width layout) -->
+            <section class="space-y-4 pt-4 border-t border-slate-100 md:pt-6">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-1.5 h-6 bg-emerald-600 rounded-full"></span>
+                        <h2 class="text-lg md:text-xl font-bold text-slate-900">나의 생태 지킴이 실천 서약</h2>
+                    </div>
+                    <!-- 실천 다짐 스코어 -->
+                    <div class="flex items-center space-x-2 bg-emerald-50 text-emerald-800 px-3 py-1.5 rounded-xl self-start md:self-auto">
+                        <i class="fa-solid fa-circle-check text-sm"></i>
+                        <span class="text-xs font-black">실천 다짐: <span id="checklist-counter">0</span> / 5 완료</span>
+                    </div>
+                </div>
+
+                <!-- 전체 게이지바 -->
+                <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                    <div id="checklist-progress-bar" class="bg-gradient-to-r from-teal-500 to-emerald-600 h-full w-0 transition-all duration-500"></div>
+                </div>
+
+                <!-- 체크리스트 아이템 컨테이너 (그리드 레이아웃) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="checklist-container">
+                    
+                    <!-- 아이템 1 -->
+                    <div onclick="toggleChecklist(0)" id="check-item-0" class="flex items-start space-x-3.5 p-4 bg-white border border-slate-100 hover:border-emerald-200 rounded-2xl cursor-pointer transition-all duration-200 select-none">
+                        <div class="mt-0.5">
+                            <span id="checkbox-0" class="w-6 h-6 flex items-center justify-center rounded-lg border-2 border-slate-300 text-slate-300 transition-all">
+                                <i class="fa-solid fa-check text-sm scale-0 transition-transform"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">수칙 1</span>
+                                <h3 class="text-sm font-bold text-slate-800">조용조용 조심스럽게</h3>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-normal">큰 소리를 내면 민감한 철새들이 놀라 도망치거나 스트레스를 받아요.</p>
+                        </div>
+                    </div>
+
+                    <!-- 아이템 2 -->
+                    <div onclick="toggleChecklist(1)" id="check-item-1" class="flex items-start space-x-3.5 p-4 bg-white border border-slate-100 hover:border-emerald-200 rounded-2xl cursor-pointer transition-all duration-200 select-none">
+                        <div class="mt-0.5">
+                            <span id="checkbox-1" class="w-6 h-6 flex items-center justify-center rounded-lg border-2 border-slate-300 text-slate-300 transition-all">
+                                <i class="fa-solid fa-check text-sm scale-0 transition-transform"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">수칙 2</span>
+                                <h3 class="text-sm font-bold text-slate-800">쓰레기는 다시 집으로</h3>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-normal">내가 버린 플라스틱과 쓰레기를 동물들이 먹이로 착각하고 삼킬 수 있어요.</p>
+                        </div>
+                    </div>
+
+                    <!-- 아이템 3 -->
+                    <div onclick="toggleChecklist(2)" id="check-item-2" class="flex items-start space-x-3.5 p-4 bg-white border border-slate-100 hover:border-emerald-200 rounded-2xl cursor-pointer transition-all duration-200 select-none">
+                        <div class="mt-0.5">
+                            <span id="checkbox-2" class="w-6 h-6 flex items-center justify-center rounded-lg border-2 border-slate-300 text-slate-300 transition-all">
+                                <i class="fa-solid fa-check text-sm scale-0 transition-transform"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <span class="text-xs font-bold text-rose-600 bg-rose-50 px-2 py-0.5 rounded-md">수칙 3</span>
+                                <h3 class="text-sm font-bold text-slate-800">지정된 탐방로만 이용</h3>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-normal">습지 안으로 깊이 들어가면 보호 식물이 상하고 철새의 번식지가 파괴돼요.</p>
+                        </div>
+                    </div>
+
+                    <!-- 아이템 4 -->
+                    <div onclick="toggleChecklist(3)" id="check-item-3" class="flex items-start space-x-3.5 p-4 bg-white border border-slate-100 hover:border-emerald-200 rounded-2xl cursor-pointer transition-all duration-200 select-none">
+                        <div class="mt-0.5">
+                            <span id="checkbox-3" class="w-6 h-6 flex items-center justify-center rounded-lg border-2 border-slate-300 text-slate-300 transition-all">
+                                <i class="fa-solid fa-check text-sm scale-0 transition-transform"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <span class="text-xs font-bold text-orange-600 bg-orange-50 px-2 py-0.5 rounded-md">수칙 4</span>
+                                <h3 class="text-sm font-bold text-slate-800">임의로 먹이 주지 않기</h3>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-normal">가공된 사람 음식은 철새에게 질병을 일으키고 야생 본능을 잃게 만들어요.</p>
+                        </div>
+                    </div>
+
+                    <!-- 아이템 5 -->
+                    <div onclick="toggleChecklist(4)" id="check-item-4" class="flex items-start space-x-3.5 p-4 bg-white border border-slate-100 hover:border-emerald-200 rounded-2xl cursor-pointer transition-all duration-200 select-none">
+                        <div class="mt-0.5">
+                            <span id="checkbox-4" class="w-6 h-6 flex items-center justify-center rounded-lg border-2 border-slate-300 text-slate-300 transition-all">
+                                <i class="fa-solid fa-check text-sm scale-0 transition-transform"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-2 mb-1">
+                                <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md">수칙 5</span>
+                                <h3 class="text-sm font-bold text-slate-800">자연물은 그대로 보존</h3>
+                            </div>
+                            <p class="text-xs text-slate-500 leading-normal">갈대, 조개껍데기, 깃털 하나도 생태계의 부품이랍니다. 눈으로만 담아요!</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 5개 완료 시 나타나는 시크릿 임명장 카드 -->
+                <div id="pledge-certificate" class="hidden transform translate-y-4 opacity-0 transition-all duration-500 bg-gradient-to-br from-amber-50 to-emerald-50 border border-amber-200 p-6 rounded-2xl text-center space-y-3 shadow-md">
+                    <div class="text-3xl text-amber-500">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <h4 class="text-base font-black text-emerald-900">을숙도 생태 수호천사 임명!</h4>
+                    <p class="text-xs text-slate-700 leading-relaxed max-w-md mx-auto">
+                        모든 실천 수칙을 약속해 주셨군요! 아름다운 을숙도와 상처받기 쉬운 습지, 그리고 바다를 건너온 소중한 철새들이 당신의 실천 덕분에 더욱 편안하고 행복하게 머물 수 있게 되었어요. 
+                    </p>
+                    <div class="text-[10px] font-bold text-emerald-800 tracking-wider">
+                        — 당신의 작은 실천이 지구를 지킵니다 —
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Bottom Action Floating Tab (Visible only on Mobile) -->
+        <nav class="md:hidden fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/80 backdrop-blur-md border-t border-slate-100 py-3 px-6 flex justify-around items-center z-40 rounded-t-2xl shadow-lg">
+            <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex flex-col items-center space-y-1 text-emerald-800">
+                <i class="fa-solid fa-feather-pointed text-lg"></i>
+                <span class="text-[10px] font-bold">처음으로</span>
+            </a>
+            <div class="w-px h-6 bg-slate-200"></div>
+            <button onclick="alertModal('🍀 을숙도 소개', '낙동강 하구에 위치하며 겨울철 고니, 저어새 등 수많은 멸종위기 철새들의 고향입니다.')" class="flex flex-col items-center space-y-1 text-slate-500 hover:text-emerald-800 transition-colors">
+                <i class="fa-solid fa-leaf text-lg"></i>
+                <span class="text-[10px] font-bold">을숙도 정보</span>
+            </button>
+            <button onclick="alertModal('🗺️ 지킴이 미션', '오늘 배운 5가지 행동 수칙을 꼭 실천하고, 주변 친구들에게도 널리 알려 보존에 동참해 주세요!')" class="flex flex-col items-center space-y-1 text-slate-500 hover:text-emerald-800 transition-colors">
+                <i class="fa-solid fa-shield-halved text-lg"></i>
+                <span class="text-[10px] font-bold">나의 미션</span>
+            </button>
+        </nav>
+
+        <!-- 커스텀 모달 (브라우저 alert 대체용) -->
+        <div id="custom-alert" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-6 hidden">
+            <div class="bg-white rounded-2xl max-w-xs w-full p-6 shadow-xl space-y-4">
+                <h5 id="alert-title" class="text-sm font-bold text-emerald-800">알림</h5>
+                <p id="alert-body" class="text-xs text-slate-600 leading-relaxed">상세 내용이 들어갑니다.</p>
+                <div class="flex justify-end">
+                    <button onclick="closeAlert()" class="px-4 py-2 bg-emerald-800 text-white rounded-xl text-xs font-bold active:scale-95 transition-all">확인</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        // 퀴즈 데이터 정의
+        const quizData = [
+            {
+                question: "을숙도는 낙동강과 남해 바다가 만나는 곳에 만들어진 삼각주(모래섬)이다.",
+                answer: true,
+                desc: "맞아요! 강물과 바닷물이 만나면서 고운 모래와 퇴적물이 쌓여 넓은 습지가 형성되었어요."
+            },
+            {
+                question: "철새들이 쉴 때 소리를 지르거나 박수를 쳐서 깨우는 것이 건강에 도움이 된다.",
+                answer: false,
+                desc: "아니에요! 철새들이 크게 놀라 날아가면 소중한 에너지를 소모해버려 생존에 위험해져요."
+            },
+            {
+                question: "을숙도는 매년 가을부터 이듬해 봄까지 수많은 겨울 철새들이 찾아오는 세계적인 도래지이다.",
+                answer: true,
+                desc: "맞아요! 먹이가 풍부하고 기후가 비교적 따뜻해 고니, 기러기 등 수많은 철새들이 겨울을 나기 위해 찾아와요."
+            },
+            {
+                question: "습지 보존을 위해 갈대밭이나 진흙 뻘 안으로 직접 들어가는 것은 권장되는 행동이다.",
+                answer: false,
+                desc: "아니에요! 탐방로 외 구역으로 들어가면 식물들이 상하고 작은 곤충과 동물들의 쉼터가 망가집니다."
+            },
+            {
+                question: "과자나 초콜릿 같은 사람이 먹는 음식을 새들에게 던져주면 영양 결핍이나 질병을 유발할 수 있다.",
+                answer: true,
+                desc: "맞아요! 사람이 먹는 가공식품은 염분이 높고 소화가 어려워 철새들에게 매우 해롭습니다."
+            }
+        ];
+
+        let currentQuizIndex = 0;
+        let score = 0;
+
+        // 체크리스트 상태 배열
+        const checklistState = [false, false, false, false, false];
+
+        // 초기 로드
+        window.addEventListener('DOMContentLoaded', () => {
+            loadQuestion();
+            updateChecklistUI();
+        });
+
+        // 질문 로드
+        function loadQuestion() {
+            const currentQuiz = quizData[currentQuizIndex];
+            
+            // 프로그레스 바 & 카운터 업데이트
+            document.getElementById('quiz-progress').innerText = `${currentQuizIndex + 1} / ${quizData.length}`;
+            document.getElementById('quiz-bar').style.width = `${((currentQuizIndex + 1) / quizData.length) * 100}%`;
+            
+            // 질문 텍스트 삽입
+            document.getElementById('quiz-question').innerText = currentQuiz.question;
+            
+            // 피드백 숨기기
+            document.getElementById('feedback-overlay').classList.add('hidden');
+        }
+
+        // 정답 확인
+        function checkAnswer(userAnswer) {
+            const currentQuiz = quizData[currentQuizIndex];
+            const isCorrect = (userAnswer === currentQuiz.answer);
+            
+            if (isCorrect) {
+                score++;
+                showFeedback(true, "정답입니다! 🎉", currentQuiz.desc);
+            } else {
+                showFeedback(false, "아쉽지만 오답이에요 😢", currentQuiz.desc);
+            }
+        }
+
+        // 피드백 오버레이 표시
+        function showFeedback(isCorrect, title, description) {
+            const overlay = document.getElementById('feedback-overlay');
+            const iconContainer = document.getElementById('feedback-icon-container');
+            const icon = document.getElementById('feedback-icon');
+            const feedbackTitle = document.getElementById('feedback-title');
+            const feedbackDesc = document.getElementById('feedback-desc');
+
+            if (isCorrect) {
+                iconContainer.className = "w-14 h-14 rounded-full flex items-center justify-center mb-3 bg-emerald-100 text-emerald-600";
+                icon.className = "fa-solid fa-check text-2xl";
+                feedbackTitle.className = "text-sm md:text-base font-bold text-emerald-800 mb-1.5";
+            } else {
+                iconContainer.className = "w-14 h-14 rounded-full flex items-center justify-center mb-3 bg-rose-100 text-rose-600";
+                icon.className = "fa-solid fa-xmark text-2xl";
+                feedbackTitle.className = "text-sm md:text-base font-bold text-rose-800 mb-1.5";
+            }
+
+            feedbackTitle.innerText = title;
+            feedbackDesc.innerText = description;
+            overlay.classList.remove('hidden');
+        }
+
+        // 다음 질문으로 이동
+        function nextQuestion() {
+            currentQuizIndex++;
+            if (currentQuizIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalResult();
+            }
+        }
+
+        // 최종 결과 화면 표시
+        function showFinalResult() {
+            const resultOverlay = document.getElementById('result-overlay');
+            const scoreText = document.getElementById('result-score');
+            
+            scoreText.innerText = `${quizData.length}개 중 ${score}개 성공!`;
+            resultOverlay.classList.remove('hidden');
+        }
+
+        // 퀴즈 초기화
+        function restartQuiz() {
+            currentQuizIndex = 0;
+            score = 0;
+            document.getElementById('result-overlay').classList.add('hidden');
+            loadQuestion();
+        }
+
+        // 체크리스트 토글 기능
+        function toggleChecklist(index) {
+            checklistState[index] = !checklistState[index];
+            updateChecklistUI();
+        }
+
+        // 체크리스트 UI 상태 업데이트
+        function updateChecklistUI() {
+            let activeCount = 0;
+
+            checklistState.forEach((isChecked, i) => {
+                const itemEl = document.getElementById(`check-item-${i}`);
+                const checkboxEl = document.getElementById(`checkbox-${i}`);
+                const checkIcon = checkboxEl.querySelector('i');
+
+                if (isChecked) {
+                    activeCount++;
+                    // 활성화 스타일 적용
+                    itemEl.className = "flex items-start space-x-3.5 p-4 bg-emerald-50/70 border border-emerald-200 rounded-2xl cursor-pointer transition-all duration-200 select-none shadow-sm";
+                    checkboxEl.className = "w-6 h-6 flex items-center justify-center rounded-lg border-2 border-emerald-600 bg-emerald-600 text-white transition-all";
+                    checkIcon.className = "fa-solid fa-check text-sm scale-100 transition-transform duration-200";
+                } else {
+                    // 기본 스타일 적용
+                    itemEl.className = "flex items-start space-x-3.5 p-4 bg-white border border-slate-100 hover:border-emerald-200 rounded-2xl cursor-pointer transition-all duration-200 select-none";
+                    checkboxEl.className = "w-6 h-6 flex items-center justify-center rounded-lg border-2 border-slate-300 text-slate-300 transition-all";
+                    checkIcon.className = "fa-solid fa-check text-sm scale-0 transition-transform duration-200";
+                }
+            });
+
+            // 게이지바 및 카운터 업데이트
+            document.getElementById('checklist-counter').innerText = activeCount;
+            const percentage = (activeCount / checklistState.length) * 100;
+            document.getElementById('checklist-progress-bar').style.width = `${percentage}%`;
+
+            // 모든 항목 체크 시 임명장 노출 애니메이션
+            const certificate = document.getElementById('pledge-certificate');
+            if (activeCount === checklistState.length) {
+                certificate.classList.remove('hidden');
+                setTimeout(() => {
+                    certificate.classList.remove('translate-y-4', 'opacity-0');
+                }, 50);
+            } else {
+                certificate.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => {
+                    certificate.classList.add('hidden');
+                }, 500); // fade-out 후 완벽히 숨김
+            }
+        }
+
+        // 커스텀 모달 노출 함수
+        function alertModal(title, message) {
+            document.getElementById('alert-title').innerText = title;
+            document.getElementById('alert-body').innerText = message;
+            document.getElementById('custom-alert').classList.remove('hidden');
+        }
+
+        function closeAlert() {
+            document.getElementById('custom-alert').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
